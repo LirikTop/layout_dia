@@ -5,20 +5,19 @@ import slide2 from '../images/slider/slider-img-large-desctop-2.png';
 import slide3 from '../images/slider/slider-img-large-desctop-3.png';
 import slide4 from '../images/slider/slider-img-large-desctop-4.png';
 
+const form = document.querySelector('.form');
+
+form.addEventListener('submit', (e) => e.preventDefault());
+
 document.addEventListener('DOMContentLoaded', initSlider);
-console.log('Hello, World!');
 
 function initSlider() {
-  let currentSlide = 1;
-  const maxSlide = 4;
-
   const slider = document.querySelector('.slider');
   const arrowLeft = document.querySelector('.slider__arrow-left');
   const arrowRight = document.querySelector('.slider__arrow-right');
-
-  console.log(slider, arrowLeft, arrowRight);
-
   const slides = [slide1, slide2, slide3, slide4];
+  let currentSlide = 1;
+  const maxSlide = slides.length;
 
   slides.forEach((slide, index) => {
     const img = document.createElement('div');
@@ -34,7 +33,11 @@ function initSlider() {
 
   function updateSliderBackground(direction) {
     images.forEach((img, index) => {
-      img.classList.remove('slider__image--active', 'slider__image--next', 'slider__image--prev');
+      img.classList.remove(
+        'slider__image--active',
+        'slider__image--next',
+        'slider__image--prev',
+      );
       if (index === currentSlide - 1) {
         img.classList.add('slider__image--active');
       } else if (direction === 'left' && index === currentSlide) {
@@ -50,7 +53,6 @@ function initSlider() {
     if (currentSlide > 1) {
       currentSlide--;
       updateSliderBackground('left');
-      console.log('click-left');
     } else {
       currentSlide = maxSlide;
       updateSliderBackground('left');
@@ -62,7 +64,6 @@ function initSlider() {
     if (currentSlide < maxSlide) {
       currentSlide++;
       updateSliderBackground('right');
-      console.log('click-right');
     } else {
       currentSlide = 1;
       updateSliderBackground('right');
