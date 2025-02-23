@@ -7,7 +7,10 @@ import slide4 from '../images/slider/slider-img-large-desctop-4.png';
 
 const form = document.querySelector('.form');
 
-form.addEventListener('submit', (e) => e.preventDefault());
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  form.reset();
+});
 
 document.addEventListener('DOMContentLoaded', initSlider);
 
